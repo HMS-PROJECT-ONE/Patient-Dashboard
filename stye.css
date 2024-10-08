@@ -372,6 +372,11 @@ body {
 	display: flex;
 	align-items: center;
 	grid-gap: 24px;
+
+}
+#content main .box-info li:hover{
+	transform: translate(-5px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 #content main .box-info li .bx {
 	width: 80px;
@@ -402,9 +407,6 @@ body {
 #content main .box-info li .text p {
 	color: var(--dark);	
 }
-
-
-
 
 
 #content main .table-data {
@@ -590,3 +592,36 @@ body {
 		min-width: 420px;
 	}
 } 
+
+
+.canvas {
+    width: 200px; /* Reduced width */
+    height: 250px; /* Reduced height */
+}
+
+.row{
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+.card {
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    max-width: 350px; /* Ensure the card doesn't stretch too wide */
+    margin-top: 10%; /* Center the card */
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+canvas{
+	width: 100%;
+	height: 100%;
+}
