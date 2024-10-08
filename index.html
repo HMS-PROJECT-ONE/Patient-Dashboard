@@ -1,330 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-        }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* Navigation Bar */
-        nav {
-            background-color: #0056b3;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="style.css">
 
-        nav h1 {
-            margin: 0;
-        }
-
-        .container {
-            margin: 20px;
-        }
-
-        /* Patient Table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #0056b3;
-            color: white;
-        }
-
-        /* Graph Section */
-        #chartContainer {
-            margin-top: 20px;
-        }
-
-        /* Upload Button */
-        #uploadBtn {
-            margin-top: 15px;
-            background-color: #28a745;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-        }
-
-        #uploadBtn:hover {
-            background-color: #218838;
-        }
-
-        /* Filter Options */
-        .filter-btns {
-            margin-bottom: 15px;
-        }
-
-        .filter-btns button {
-            margin-right: 10px;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .filter-btns button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Patient Form */
-        .patient-form {
-            margin-bottom: 30px;
-        }
-
-        .patient-form input, .patient-form select {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .patient-form button {
-            background-color: #28a745;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .patient-form button:hover {
-            background-color: #218838;
-        }
-
-        /* Help Center */
-        .help-center {
-            margin-top: 30px;
-            background-color: #f4f4f9;
-            padding: 15px;
-            border: 1px solid #ddd;
-        }
-
-        .help-center h2 {
-            color: #0056b3;
-        }
-
-        .help-center p {
-            margin: 5px 0;
-        }
-
-        /* Buttons */
-        .btn {
-            background-color: #007bff;
-            color: white;
-            padding: 8px;
-            border: none;
-            cursor: pointer;
-            margin: 0 5px;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-
-        .btn-delete {
-            background-color: red;
-        }
-
-        .btn-update {
-            background-color: orange;
-        }
-
-    </style>
+	<title>AdminHub</title>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <h1>Patient Dashboard</h1>
-    </nav>
 
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Filter Buttons -->
-        <div class="filter-btns">
-            <button id="allPatientsBtn">All Patients</button>
-            <button id="flaggedPatientsBtn">Flagged Patients</button>
-        </div>
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bxs-smile'></i>
+			<span class="text">AdminHub</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="#">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Patients</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">Appointments</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-message-dots' ></i>
+					<span class="text">Lab results</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-report' ></i>
+					<span class="text">Reports</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
 
-        <!-- Patient Form -->
-        <div class="patient-form">
-            <h2>Add New Patient</h2>
-            <input type="text" id="patientName" placeholder="Patient Name">
-            <input type="number" id="patientAge" placeholder="Age">
-            <input type="text" id="medicalCondition" placeholder="Medical Condition">
-            <input type="text" id="contactInfo" placeholder="Contact Information">
-            <select id="flagPatient">
-                <option value="No">Flag Patient</option>
-                <option value="Yes">Yes</option>
-            </select>
-            <label for="profilePicture">Upload Profile Picture:</label>
-            <input type="file" id="profilePicture" accept="image/*">
-            <button id="addPatientBtn">Add Patient</button>
-        </div>
 
-        <!-- Patient Table -->
-        <h2>Patients List</h2>
-        <table id="patientTable">
-            <tr>
-                <th>Profile Picture</th>
-                <th>Patient Name</th>
-                <th>Age</th>
-                <th>Medical Condition</th>
-                <th>Contact Info</th>
-                <th>Flagged</th>
-                <th>Actions</th>
-            </tr>
-        </table>
 
-        <!-- Medical Test Trend Graph -->
-        <h2>Medical Test Trends</h2>
-        <canvas id="patientTrendChart" width="400" height="200"></canvas>
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Departments</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn" title="Search"><i class='bx bx-search'></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+				<span class="num">8</span>
+			</a>
+			<a href="#" class="profile" >
+				<img src="img/people.png" alt="profile">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
 
-        <!-- Upload Button -->
-        <input type="file" id="uploadBtn" value="Upload Patient Data">
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+				<a href="#" class="btn-download">
+					<i class='bx bxs-cloud-download' ></i>
+					<span class="text">Download PDF</span>
+				</a>
+			</div>
 
-        <!-- Help Center Section -->
-        <div class="help-center">
-            <h2>Help Center</h2>
-            <p>If you have any queries or need assistance, please contact:</p>
-            <p>Email: support@medicaldashboard.com</p>
-            <p>Phone: +123-456-7890</p>
-            <p>Available: Mon - Fri, 9am - 5pm</p>
-        </div>
+			<ul class="box-info">
+				<li>
+					<i class='bx bxs-calendar-check' ></i>
+					<span class="text">
+						<h3>1020</h3>
+						<p>Appointments</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-group' ></i>
+					<span class="text">
+						<h3>2834</h3>
+						<p>New Patients</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-flask'></i>
+					<span class="text">
+						<h3>2543</h3>
+						<p>Lab Results</p>
+					</span>
+				</li>
+			</ul>
 
-    </div>
 
-    <!-- Including Chart.js Library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Appointments</h3>
+						<i class='bx bx-search' ></i>
+						<i class='bx bx-filter' ></i>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>Patient Name</th>
+								<th>Date</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<img src="img/people.png" alt="name">
+									<p>Brian Juma</p>
+								</td>
+								<td>29-09-2024</td>
+								<td><span class="status completed">Completed</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/people.png" alt="profile">
+									<p>Kevin litsa</p>
+								</td>
+								<td>21-09-2024</td>
+								<td><span class="status pending">Pending</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/people.png" alt="name">
+									<p>Agnes  </p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status process">Process</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/people.png" alt="pa">
+									<p>Joan kazozer</p>
+								</td>
+								<td>01-10-2024</td>
+								<td><span class="status pending">Pending</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/people.png" alt="Patient's profile picture">
+									<p>Henry Tom</p>
+								</td>
+								<td>30-09-2024</td>
+								<td><span class="status completed">Completed</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="todo">
+					<div class="head">
+						<h3>Todos</h3>
+						<i class='bx bx-plus' ></i>
+						<i class='bx bx-filter' ></i>
+					</div>
+					<ul class="todo-list">
+						<li class="completed">
+							<p>Check Reports</p>
+							<i class='bx bx-dots-vertical-rounded' ></i>
+						</li>
+						<li class="completed">
+							<p>Follow up patients status</p>
+							<i class='bx bx-dots-vertical-rounded' ></i>
+						</li>
+						<li class="not-completed">
+							<p>Prescribing medication</p>
+							<i class='bx bx-dots-vertical-rounded' ></i>
+						</li>
+						<li class="completed">
+							<p>Request a Lab test</p>
+							<i class='bx bx-dots-vertical-rounded' ></i>
+						</li>
+						<li class="not-completed">
+							<p>Administering follow-up care</p>
+							<i class='bx bx-dots-vertical-rounded' ></i>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
 
-    <script>
-        // Initial patient data
-        let patients = [];
-
-        // Render the patient table
-        function renderPatientTable(filter = "all") {
-            const table = document.getElementById('patientTable');
-            table.innerHTML = `
-                <tr>
-                    <th>Profile Picture</th>
-                    <th>Patient Name</th>
-                    <th>Age</th>
-                    <th>Medical Condition</th>
-                    <th>Contact Info</th>
-                    <th>Flagged</th>
-                    <th>Actions</th>
-                </tr>
-            `;
-
-            patients.forEach((patient, index) => {
-                if (filter === "flagged" && patient.flagged === "No") return;
-                const row = `
-                    <tr>
-                        <td><img src="${patient.profilePicture}" alt="Profile" width="50" height="50"></td>
-                        <td>${patient.name}</td>
-                        <td>${patient.age}</td>
-                        <td>${patient.condition}</td>
-                        <td>${patient.contact}</td>
-                        <td>${patient.flagged}</td>
-                        <td>
-                            <button class="btn btn-update" onclick="updatePatient(${index})">Update</button>
-                            <button class="btn btn-delete" onclick="deletePatient(${index})">Delete</button>
-                            <button class="btn" onclick="viewPatientHistory(${index})">View History</button>
-                        </td>
-                    </tr>
-                `;
-                table.innerHTML += row;
-            });
-        }
-
-        // Add new patient
-        document.getElementById('addPatientBtn').addEventListener('click', function() {
-            const name = document.getElementById('patientName').value;
-            const age = document.getElementById('patientAge').value;
-            const condition = document.getElementById('medicalCondition').value;
-            const contact = document.getElementById('contactInfo').value;
-            const flagged = document.getElementById('flagPatient').value;
-            const profilePictureInput = document.getElementById('profilePicture');
-            const profilePicture = URL.createObjectURL(profilePictureInput.files[0]);
-
-            patients.push({ name, age, condition, contact, flagged, profilePicture });
-            renderPatientTable();
-        });
-
-        // Filter buttons for all and flagged patients
-        document.getElementById('allPatientsBtn').addEventListener('click', function() {
-            renderPatientTable("all");
-        });
-
-        document.getElementById('flaggedPatientsBtn').addEventListener('click', function() {
-            renderPatientTable("flagged");
-        });
-
-        // Delete patient
-        function deletePatient(index) {
-            patients.splice(index, 1);
-            renderPatientTable();
-        }
-
-        // Update patient (placeholder for actual functionality)
-        function updatePatient(index) {
-            alert(`Update record for ${patients[index].name}`);
-        }
-
-        // View patient history (placeholder for actual functionality)
-        function viewPatientHistory(index) {
-            alert(`Viewing history for ${patients[index].name}`);
-        }
-
-        // Initial rendering of patient table
-        renderPatientTable();
-
-        // Sample patient test data for graph
-        const patientTestData = [12, 19, 3, 5, 2, 3, 10, 8, 15, 9];
-        const ctx = document.getElementById('patientTrendChart').getContext('2d');
-        const patientTrendChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-                datasets: [{
-                    label: 'Medical Test Trend',
-                    data: patientTestData,
-                    borderColor: 'rgb(75, 192, 192)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderWidth: 2,
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
+	<script src="script.js"></script>
 </body>
 </html>
+
