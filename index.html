@@ -10,7 +10,10 @@
 	<link rel="stylesheet" href="style.css">
 
 	<title>AdminHub</title>
+
 </head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <body>
 
 
@@ -115,6 +118,25 @@
 					<span class="text">Download PDF</span>
 				</a>
 			</div>
+
+
+    <!-- <div class="row">
+        <div class="col-md-6">
+            Patient Recovery Rates
+            <div class="card">
+                <h3>Patient Recovery Rates</h3>
+                <canvas id="recoveryRateChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            Patients Admitted to Labs -->
+            <!-- <div class="card">
+                <h3>Patients Admitted to Labs</h3>
+                <canvas id="labAdmissionChart"></canvas>
+            </div>
+        </div> -->
+    <!-- </div> -->
 
 			<ul class="box-info">
 				<li>
@@ -230,6 +252,24 @@
 					</ul>
 				</div>
 			</div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Patient Recovery Rates -->
+                    <div class="card">
+                        <h3>Patient Recovery Rates</h3>
+                        <canvas id="recoveryRateChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <!-- Patients Admitted to Labs -->
+                    <div class="card">
+                        <h3>Patients Admitted to Labs</h3>
+                        <canvas id="labAdmissionChart"></canvas>
+                    </div>
+                </div>
+            </div>
 		</main>
 		<!-- MAIN -->
 	</section>
@@ -237,6 +277,7 @@
 	
 
 	<script src="script.js"></script>
+
 </body>
 </html>
 
